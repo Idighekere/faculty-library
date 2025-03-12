@@ -12,11 +12,11 @@ const footerQuickLinks = [
 ]
 
 export default function Footer({
-  siteTitle = "Engineering Library",
+  siteTitle = "NUESA UNIUYO Library",
   logo = <Book className="h-6 w-6" />,
   description = "Providing comprehensive resources and services to support engineering education, research, and innovation across all departments.",
-  developerName = "Your Name",
-  developerUrl = "https://yourwebsite.com",
+  developerName = "Idighekere Udo",
+  developerUrl = "https://idighekereudo.netlify.app",
 }) {
   const currentYear = new Date().getFullYear()
 
