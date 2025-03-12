@@ -1,0 +1,5 @@
+export {default as booksRoute} from "./books.route"
+export {default as coursesRoute} from "./courses.route"
+export {default as departmentsRoute} from "./departments.route"
+export {default as userRoutes} from "./users.route"
+export {default as authRoutes} from "./auth.route"

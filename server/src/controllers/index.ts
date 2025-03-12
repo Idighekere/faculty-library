@@ -1,0 +1,5 @@
+export * from "./department.controllers"
+export * from "./user.controllers"
+export * from "./book.controllers"
+export * from "./course.controllers"
+export * from "./auth.controllers"

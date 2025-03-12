@@ -1,0 +1,27 @@
+import { useState, useEffect } from "react"
+import { useLocation } from "react-router-dom"
+import Preloader from "@/components/ui/preloader"
+
+function LoadingSpinner({ children, delay = 2000 }) {
+  // const location = useLocation()
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Show preloader on location change
+    setIsLoading(true)
+
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [window.location.pathname, delay])
+
+  if (isLoading) {
+    return <Preloader fullScreen message="Loading..." />
+  }
+
+  return children
+}
+
+export default LoadingSpinner

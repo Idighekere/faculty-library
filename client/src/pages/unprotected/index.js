@@ -1,0 +1,7 @@
+export {default as Home } from "./home"
+export {default as CoursesPage} from "./courses"
+export {default as BooksPage} from "./books"
+export {default as RegisterPage} from "./register"
+export {default as LoginPage} from "./login"
+export { default as ErrorPage } from "./error"
+export { default as CustomErrorPage } from "./custom-error"
