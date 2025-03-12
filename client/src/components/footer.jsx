@@ -67,7 +67,7 @@ export default function Footer({
           </div>
 
           {/* Resources */}
-          <div>
+          {/* <div>
             <h3 className="font-semibold text-lg mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
@@ -111,7 +111,7 @@ export default function Footer({
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Copyright and developer info */}

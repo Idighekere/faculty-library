@@ -74,38 +74,38 @@ export const bookCategories={
 export const steps = [
     {
       number: 1,
-      title: "Select Your Department",
+      title: "Select Your Department, Level and Semester",
       description:
-        "Choose your engineering department from the dropdown menu to filter courses specific to your field of study.",
+        "Choose your engineering department,current academic level and which semester you're interested in from the dropdown menu to filter courses specific to your chouce.",
       image: "/placeholder.svg?height=300&width=400",
     },
     {
       number: 2,
-      title: "Choose Your Level",
-      description: "Select your current academic level to see courses that are relevant to your year of study.",
+      title: "Find the course",
+      description: "Look for the course you are interested to get its materials",
       image: "/placeholder.svg?height=300&width=400",
     },
     {
       number: 3,
-      title: "Pick a Semester",
-      description: "Choose which semester you're interested in to further refine your course selection.",
+      title: "Find the material",
+      description: "Look for the material in which you needm you can filter by Textbooks, Past questions or Lecture notes",
       image: "/placeholder.svg?height=300&width=400",
     },
     {
       number: 4,
-      title: "Browse Available Courses",
+      title: "Preview and Download Material",
       description:
-        "Review the list of available courses matching your criteria, complete with descriptions, credit hours, and prerequisites.",
+        "You can have a preview of the material's contents before proceeding to download",
       image: "/placeholder.svg?height=300&width=400",
     },
   ]
 
 export const features = [
-    {
-      icon: Book,
-      title: "Extensive Collection",
-      description: "Access thousands of engineering textbooks, journals, and research papers across all disciplines.",
-    },
+    // {
+    //   icon: Book,
+    //   title: "Extensive Collection",
+    //   description: "Access thousands of engineering textbooks, journals, and research papers across all disciplines.",
+    // },
     {
       icon: Search,
       title: "Advanced Search",
@@ -115,13 +115,13 @@ export const features = [
     {
       icon: Download,
       title: "Digital Downloads",
-      description: "Download e-books, papers, and resources directly to your device for offline access.",
+      description: "Download past questions, lecture notes... directly to your device for offline access.",
     },
-    {
-      icon: Calendar,
-      title: "Course Calendar",
-      description: "Stay organized with integrated course schedules, assignment due dates, and exam timelines.",
-    },
+    // {
+    //   icon: Calendar,
+    //   title: "Course Calendar",
+    //   description: "Stay organized with integrated course schedules, assignment due dates, and exam timelines.",
+    // },
     {
       icon: FileText,
       title: "Lecture Notes",
@@ -132,14 +132,14 @@ export const features = [
       title: "24/7 Access",
       description: "Our digital library is available around the clock, allowing you to study whenever it suits you.",
     },
-    {
-      icon: GraduationCap,
-      title: "Academic Support",
-      description: "Get assistance from faculty members and teaching assistants through our integrated support system.",
-    },
-    {
-      icon: Library,
-      title: "Study Resources",
-      description: "Access past exams, practice problems, and study guides to help you prepare for assessments.",
-    },
+    // {
+    //   icon: GraduationCap,
+    //   title: "Academic Support",
+    //   description: "Get assistance from faculty members and teaching assistants through our integrated support system.",
+    // },
+    // {
+    //   icon: Library,
+    //   title: "Study Resources",
+    //   description: "Access past exams, practice problems, and study guides to help you prepare for assessments.",
+    // },
   ]
