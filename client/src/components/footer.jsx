@@ -119,7 +119,7 @@ export default function Footer({
           <p className="text-sm text-muted-foreground">
             &copy; {currentYear} {siteTitle}. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground text-center">
             Developed by{" "}
             <a href={developerUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:underline">
               {developerName}
