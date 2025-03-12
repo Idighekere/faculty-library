@@ -106,7 +106,7 @@ apiClient.interceptors.response.use(
 
       // Show a toast notification
       toast.error(
-        `Rate limit exceeded. Please try again in ${rateLimitError.retryAfter} seconds.`,
+        `Rate limit exceeded. Please try again in ${rateLimitError.retryAfter ? `${rateLimitError.retryAfter} seconds`:`15 minutes`}`,
         { duration: Math.min(rateLimitError.retryAfter * 1000, 8000) }
       );
 
