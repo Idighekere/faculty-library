@@ -12,7 +12,7 @@ const createCourse = catchAsync(async (req: Request, res, next) => {
         return next(new ErrorResponse("All fields are required", 400))
     }
 
-    const departments = await Department.find({ shortName: { $in: departmentShortNames.toUpperCase() } });
+    const departments = await Department.find({ shortName: { $in: departmentShortNames } });
 
     if (departments.length !== departmentShortNames.length) {
         return next(new ErrorResponse("One or more department short names are invalid", 400))
