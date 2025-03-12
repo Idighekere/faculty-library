@@ -14,7 +14,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 export default function NavBar ({
-  siteTitle = 'Faculty Library',
+  siteTitle = 'NUESA UNIUYO Library',
   logo = <Book className='h-6 w-6' />,
   navItems = [
     { title: 'Home', href: '/' },
