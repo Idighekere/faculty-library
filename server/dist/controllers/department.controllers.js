@@ -15,7 +15,8 @@ const createDepartment = (0, middlewares_1.catchAsync)(async (req, res, next) =>
     if (!name) {
         return next(new utils_1.ErrorResponse("Name and logo url is required", 400));
     }
-    const newDepartment = await models_1.Department.create({ name, logo, association });
+    const shortName = (0, utils_1.getDepartmentShortName)(name);
+    const newDepartment = await models_1.Department.create({ name, logo, association, shortName });
     (0, utils_1.SuccessResponse)(res, 201, newDepartment, "department created successfully");
 });
 exports.createDepartment = createDepartment;

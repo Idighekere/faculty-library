@@ -71,13 +71,13 @@ const getDepartmentShortName = (name) => {
         return 'AGE';
     }
     else if (name.includes('Electrical')) {
-        return 'EEE';
+        return 'ELE';
     }
     else if (name.includes('Mechanical')) {
         return 'MEE';
     }
     else if (name.includes('Petroleum')) {
-        return 'PET';
+        return 'PEE';
     }
     else if (name.includes('Food')) {
         return 'FDE';

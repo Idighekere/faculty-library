@@ -18,7 +18,7 @@ const createCourse = catchAsync(async (req: Request, res, next) => {
         return next(new ErrorResponse("One or more department short names are invalid", 400))
     }
 
-    const departmentIds = departments.map(dept => dept._id);
+    const departmentIds = departments.map((dept:any) => dept._id);
 
 
     const course = await Course.create({ title, courseCode, departments: departmentIds, level, semester, addedBy: req.user._id })

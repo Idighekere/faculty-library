@@ -29,7 +29,7 @@ const hashData = (data: {
 
 const verifyToken = async <T=TokenPayload>(token: string, secret: string): Promise<TokenPayload> => {
     return new Promise((resolve, reject) => {
-        jwt.verify(token, secret, (err, decoded) => {
+        jwt.verify(token, secret, (err:any, decoded:any) => {
             if (err) {
                 return reject(err);
             }

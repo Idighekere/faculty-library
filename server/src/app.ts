@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { globalErrorHandler } from '@/middlewares';
 import {ErrorResponse} from '@/common/utils';
 import cookie from 'cookie-parser'
@@ -29,15 +29,15 @@ app.use(cookie());
 
 // CORS configuration
 const corsOptions = {
-	origin: ['http://localhost:5173', 'http://192.168.44.119:5173','https://nuesa-library.loca.lt'],
+	origin: ['http://localhost:5173', 'http://192.168.44.119:5173', 'https://nuesa-library.loca.lt', 'https://faculty-library.netlify.app'],
 	credentials: true, // Allow credentials (cookies) to be sent and received
 	optionsSuccessStatus: 200,
 	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 	allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
 };
 // Add headers to the response
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Credentials', 'true'); 
+app.use((req:Request, res:Response, next:NextFunction) => {
+	res.header('Access-Control-Allow-Credentials', 'true');
 	next();
 });
 
@@ -78,7 +78,7 @@ app.use("/api/v1/books",booksRoute)
 app.use("/api/v1/courses",coursesRoute)
 app.use("/api/v1/departments",departmentsRoute)
 
-app.all("*",(req,res,next)=>{
+app.all("*",(req:Request,res:Response,next:NextFunction)=>{
     return next(new ErrorResponse(`Can't find ${req.originalUrl} in the server`,404))
 })
 

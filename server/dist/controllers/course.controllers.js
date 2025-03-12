@@ -13,7 +13,7 @@ const createCourse = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     if (departments.length !== departmentShortNames.length) {
         return next(new utils_1.ErrorResponse("One or more department short names are invalid", 400));
     }
-    const departmentIds = departments.map(dept => dept._id);
+    const departmentIds = departments.map((dept) => dept._id);
     const course = await models_1.Course.create({ title, courseCode, departments: departmentIds, level, semester, addedBy: req.user._id });
     (0, utils_1.SuccessResponse)(res, 201, course, "Course created successfully");
 });

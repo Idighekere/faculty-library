@@ -1,5 +1,6 @@
 import { IDepartment } from '@/common/types';
 import { getDepartmentShortName } from '@/common/utils';
+import { NextFunction } from 'express';
 import mongoose, { Schema, Document } from 'mongoose';
 
 const DepartmentSchema: Schema = new Schema({
@@ -32,14 +33,6 @@ const DepartmentSchema: Schema = new Schema({
 },
     { timestamps: true }
 );
-
-
-
-DepartmentSchema.pre('save', function (next) {
-
-    this.shortName = getDepartmentShortName(this.name as string)
-    next()
-})
 
 
 const Department = mongoose.model<IDepartment>('Department', DepartmentSchema);

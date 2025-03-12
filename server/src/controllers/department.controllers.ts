@@ -1,4 +1,4 @@
-import { ErrorResponse, SuccessResponse } from "@/common/utils";
+import { ErrorResponse, getDepartmentShortName, SuccessResponse } from "@/common/utils";
 import { catchAsync } from "@/middlewares";
 import { Department } from "@/models";
 import { Request, Response } from "express";
@@ -23,8 +23,10 @@ const createDepartment = catchAsync(async (req: Request, res: Response, next) =>
     if (!name) {
         return next(new ErrorResponse("Name and logo url is required", 400))
     }
+    const shortName = getDepartmentShortName(name)
 
-    const newDepartment = await Department.create({ name, logo, association })
+
+    const newDepartment = await Department.create({ name, logo, association,shortName })
 
     SuccessResponse(res, 201, newDepartment, "department created successfully")
 })

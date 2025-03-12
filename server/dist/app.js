@@ -59,7 +59,7 @@ app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 // CORS configuration
 const corsOptions = {
-    origin: ['http://localhost:5173', 'http://192.168.44.119:5173', 'https://nuesa-library.loca.lt'],
+    origin: ['http://localhost:5173', 'http://192.168.44.119:5173', 'https://nuesa-library.loca.lt', 'https://faculty-library.netlify.app'],
     credentials: true, // Allow credentials (cookies) to be sent and received
     optionsSuccessStatus: 200,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

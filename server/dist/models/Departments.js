@@ -33,7 +33,6 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("@/common/utils");
 const mongoose_1 = __importStar(require("mongoose"));
 const DepartmentSchema = new mongoose_1.Schema({
     name: {
@@ -63,9 +62,5 @@ const DepartmentSchema = new mongoose_1.Schema({
         match: [/^[A-Z]{2,3}$/, 'Please enter a valid short name'],
     }
 }, { timestamps: true });
-DepartmentSchema.pre('save', function (next) {
-    this.shortName = (0, utils_1.getDepartmentShortName)(this.name);
-    next();
-});
 const Department = mongoose_1.default.model('Department', DepartmentSchema);
 exports.default = Department;
