@@ -13,7 +13,7 @@ const BookCard = ({ book }) => {
 
   // const downloadLink=`https://drive.google.com/uc?export=download&id=${driveFileId}&confirm=t&uuid=${Date.now()}`
 
-  const downloadLink = `https://drive.usercontent.google.com/download?id=${driveFileId}&export=download&authuser=0`
+  const downloadLink = `https://drive.usercontent.google.com/download?id=${driveFileId}&export=download&authuser=0&confirm=t`
 
   const handlePreview = () => {
     setIsPreviewOpen(true)
