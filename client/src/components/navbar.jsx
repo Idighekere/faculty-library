@@ -13,37 +13,64 @@ import {
 } from '@/components/ui/navigation-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
+const navItems = [
+  { title: 'Home', href: '/' },
+  { title: 'About', href: '/about' },
+  { title: 'Contact', href: '/contact' },
+  {
+    title: 'Departments',
+    href: '/departments',
+    children: [
+      {
+        title: 'Agricultural Engineering',
+        href: '/departments/agricultural-engineering',
+        description: 'Applies engineering principles to agricultural production, processing, and sustainability challenges.'
+      },
+      {
+        title: 'Chemical Engineering',
+        href: '/departments/chemical-engineering',
+        description: 'Focuses on designing and developing chemical processes and equipment to transform raw materials into valuable products.'
+      },
+      {
+        title: 'Civil Engineering',
+        href: '/departments/civil-engineering',
+        description: 'Deals with the design, construction, and maintenance of the physical and naturally built environment.'
+      },
+      {
+        title: 'Computer Engineering',
+        href: '/departments/computer-engineering',
+        description: 'Combines electrical engineering and computer science to develop computer hardware and software systems.'
+      },
+      {
+        title: 'Electrical/Electronic Engineering',
+        href: '/departments/electrical-electronic-engineering',
+        description: 'Focuses on electrical systems, electronic devices, and electromagnetic applications for power generation and transmission.'
+      },
+      {
+        title: 'Food Engineering',
+        href: '/departments/food-engineering',
+        description: 'Applies engineering principles to food production, processing, preservation, and packaging systems.'
+      },
+      {
+        title: 'Mechanical Engineering',
+        href: '/departments/mechanical-engineering',
+        description: 'Involves designing, analyzing, and manufacturing mechanical systems and thermal devices.'
+      },
+      {
+        title: 'Petroleum Engineering',
+        href: '/departments/petroleum-engineering',
+        description: 'Specializes in the exploration, extraction, and production of oil, gas, and other resources from the earth.'
+      }
+    ]
+  },
+  { title: 'Courses', href: '/courses' }
+]
+
 export default function NavBar ({
   siteTitle = 'NUESA UNIUYO Library',
-  logo = <Book className='h-6 w-6' />,
-  navItems = [
-    { title: 'Home', href: '/' },
-    { title: 'About', href: '/about' },
-    { title: 'Contact', href: '/contact' },
-    {
-      title: 'Departments',
-      href: '/departments',
-      children: [
-        {
-          title: 'Computer Engineering',
-          href: '/departments/computer-science',
-          description: 'Software engineering, AI, and data science programs'
-        },
-        {
-          title: 'Electrical Engineering',
-          href: '/departments/electrical',
-          description: 'Power systems, electronics, and telecommunications'
-        },
-        {
-          title: 'Mechanical Engineering',
-          href: '/departments/mechanical',
-          description: 'Thermodynamics, mechanics, and manufacturing'
-        }
-        //complete the array
-      ]
-    },
-    { title: 'Courses', href: '/courses' }
-  ],
+  // logo = <Book className='h-6 w-6' />,
+  logo=<img src="/nuesa-logo.png" alt="NUESA UNIUYO Logo" className="w-10 h-10" />,
+
   ctaText = 'Login',
   ctaHref = '/auth/login'
 }) {
@@ -115,7 +142,7 @@ export default function NavBar ({
           <SheetTrigger asChild>
             <Button
               variant='outline'
-              className=' md:hidden border-0 p-0 shadow-none'
+              className=' md:hidden border-0 p-0 shadow-none bg-transparent'
             >
               {/* <Menu className='h-40 w-40' /> */}
               <img src='/menu.svg' alt='Hamburger menu' className='h-9 w-9' />
@@ -126,20 +153,20 @@ export default function NavBar ({
             <div className='flex flex-col gap-4 p-10 /py-15 px-6'>
               <Link
                 href='/'
-                className='flex items-center gap-2 text-lg font-semibold'
+                className='flex items-center gap-2 text-lg font-semibold justfy-center w-full self-center'
               >
                 {logo}
-                {siteTitle}
+                {/* {siteTitle} */}
               </Link>
               <nav className='flex flex-col gap-3'>
                 {navItems.map(item => (
                   <div key={item.title} className='space-y-3'>
-                    <Link
+                    <a
                       href={item.href}
                       className='text-base font-medium transition-colors hover:text-primary'
                     >
                       {item.title}
-                    </Link>
+                    </a>
                     {item.children && (
                       <div className='ml-4 flex flex-col gap-2 pl-2 border-l'>
                         {item.children.map(child => (

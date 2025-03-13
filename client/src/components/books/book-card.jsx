@@ -11,20 +11,26 @@ const BookCard = ({ book }) => {
 
   const previewUrl = `https://drive.google.com/file/d/${driveFileId}/preview`
 
-  const downloadLink=`https://drive.google.com/uc?export=download&id=${driveFileId}&confirm=t&uuid=${Date.now()}&authuser=0`
+  // const downloadLink=`https://drive.google.com/uc?export=download&id=${driveFileId}&confirm=t&uuid=${Date.now()}&authuser=0`
 
- // const downloadLink = `https://drive.usercontent.google.com/download?id=${driveFileId}&export=download&authuser=0&confirm=t`
+ const downloadLink = `https://drive.usercontent.google.com/download?id=${driveFileId}&export=download&authuser=0&confirm=f`
 
   const handlePreview = () => {
     setIsPreviewOpen(true)
   }
 
-  const handleDownload = e => {
+  const handleDownload = async(e) => {
     e.preventDefault()
+    // const response = await fetch(downloadLink,{mode:'no-cors'})
+// const blob = await response.blob()
+
+// console.log(response)
+    // console.log(blob)
 
     const link = document.createElement('a')
     link.href = downloadLink
-    link.setAttribute('download', book.title)
+
+    link.setAttribute('download', `${book.title}.pdf`)
     // link.setAttribute('target','_blank')
     document.body.appendChild(link)
     link.click()
@@ -81,7 +87,7 @@ const BookCard = ({ book }) => {
               Download
             </Button>
           </form>
-          {/* <Button className='flex-1' onClick={() => handleDownload()}>
+          {/* <Button className='flex-1' onClick={() => window.open(downloadLink)}>
             <Download className='mr-2 h-4 w-4' />
             Download
           </Button> */}

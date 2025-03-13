@@ -31,14 +31,14 @@ export default function Hero () {
   }
 
   return (
-    <main className='w-full py-12 md:py-24 lg:py-32 bg-muted/40 flex flex-col justify-center items-center'>
+    <main className='w-full py-12 md:py-24 lg:py-32 bg-muted/40 flex flex-col justify-center items-center md:min-h-screen bg-[url("/hero-ciircuit-pattern.svg")]'>
       <div className='container px-4 md:px-6'>
         <div className='flex flex-col items-center space-y-4 text-center mb-8'>
           <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
             Find Your Engineering Course Materials
           </h1>
           <p className='max-w-[700px] text-muted-foreground md:text-xl'>
-            Browse through our comprehensive collection of engineering courses
+            Browse through our comprehensive collection of engineering course materials
             across all departments, levels, and semesters.
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function Hero () {
             {/* Department Select - Full width on small/medium, 4 cols on large */}
             <div className='lg:col-span-4'>
               <Select value={department} onValueChange={setDepartment}>
-                <SelectTrigger className='w-full'>
+                <SelectTrigger className='w-full border-primary'>
                   <SelectValue placeholder='Select Department' />
                 </SelectTrigger>
                 <SelectContent>
@@ -64,10 +64,10 @@ export default function Hero () {
             {/* Level and Semester - Each takes half width on small/medium, 2 cols on large */}
             <div className='grid grid-cols-2 gap-4 lg:col-span-4'>
               <Select value={level} onValueChange={setLevel}>
-                <SelectTrigger className='w-full'>
+                <SelectTrigger className='w-full border-primary'>
                   <SelectValue placeholder='Level' />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent >
                   {levels.map(level => (
                     <SelectItem key={level} value={level}>
                       {level} Level
@@ -77,7 +77,7 @@ export default function Hero () {
               </Select>
 
               <Select value={semester} onValueChange={setSemester}>
-                <SelectTrigger className='w-full'>
+                <SelectTrigger className='w-full border-primary'>
                   <SelectValue placeholder='Semester' />
                 </SelectTrigger>
                 <SelectContent>
@@ -92,8 +92,8 @@ export default function Hero () {
 
             {/* Search Button - Full width on small/medium, 4 cols on large */}
             <div className='lg:col-span-4'>
-              <Button className='w-full' size='lg' onClick={handleSearch} disabled={!department || !level || !semester}>
-                <Search className='mr-2 h-4 w-4' />
+              <Button className='w-full' onClick={handleSearch} disabled={!department || !level || !semester}>
+                <Search className='mr-2 h-6 w-6 font-bold' />
                 Search Courses
               </Button>
             </div>

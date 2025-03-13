@@ -12,7 +12,7 @@ export default function CourseCard({ course }) {
     window.location.href=`/books?courseCode=${course.courseCode}&category=all&page=1`
   }
   return (
-    <div className="bg-background rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden w-72 md:w-64">
+    <div className="bg-background rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden /w-72 /md:w-64">
       <div className="p-6">
         <div className="flex flex-col gap-3">
           <div className="flex items-start justify-between gap-3">
@@ -33,7 +33,7 @@ export default function CourseCard({ course }) {
           <Button  className="w-full" onClick={handleViewBooks}>
 
               <Book className="mr-2 h-4 w-4" />
-              View Books
+              View Materials
 
           </Button>
         </div>
