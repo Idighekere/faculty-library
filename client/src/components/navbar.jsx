@@ -84,7 +84,7 @@ export default function NavBar ({
         </a>
 
         {/* SECTION - Desktop navigation */}
-        <div className='hidden flex-1 justify-end md:flex'>
+        <div className='hidden flex-1 justify-end md:flex relative'>
           <NavigationMenu>
             <NavigationMenuList>
               {navItems.map(item => {
@@ -96,7 +96,7 @@ export default function NavBar ({
                         {item.title}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
+                        <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] h-full right-0 /absolute'>
                           {item.children.map(child => (
                             <li key={child.title}>
                               <NavigationMenuLink asChild>
