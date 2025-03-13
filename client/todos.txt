@@ -1,0 +1,3 @@
+1. Remove loading screen from static pages (i.e login, register, about, contact, ...)
+2. Remove the "Loading..." text from the loading screen
+3. Empty or unavailable pages shouldn't be made known or shown till they are completed.
