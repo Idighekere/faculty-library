@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <HowItWorks />
-      <Features/>
+      {/**<HowItWorks />
+      <Features/>**/}
     </>
   )
 }
