@@ -2,16 +2,14 @@ import { CoursesLayout, CourseResults } from '@/components'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useCourseParams } from '@/contexts'
 import { useQuery } from '@tanstack/react-query'
-import {  getCoursesByFilterQueryOptions } from '@/services'
+import { getCoursesByFilterQueryOptions } from '@/services'
 
 export default function CoursesPage () {
-
   const {
     isLoading: paramsLoading,
     courseParams,
     updateCourseParams
   } = useCourseParams()
-
 
   const {
     data: coursesData = [],
@@ -19,14 +17,14 @@ export default function CoursesPage () {
     error
   } = useQuery(getCoursesByFilterQueryOptions(courseParams, paramsLoading))
 
-  console.log(coursesData)
+  //console.log(coursesData)
   return (
     <div className='min-h-screen bg-muted/30 w-full px-5 md:px-12 lg:px-16'>
       <CoursesLayout
         courseParams={courseParams}
         updateCourseParams={updateCourseParams}
       >
-        {(paramsLoading || courseLoading) ? (
+        {paramsLoading || courseLoading ? (
           <CourseResultsSkeleton />
         ) : (
           <CourseResults

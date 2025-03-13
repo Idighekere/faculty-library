@@ -189,7 +189,7 @@ function AddCourseDialog ({ open, onOpenChange, onSuccess }) {
                                     )
                                   )
                                 }
-                                console.log(field)
+                                //console.log(field)
                               }}
                             />
                             <Label
@@ -224,7 +224,7 @@ function AddCourseDialog ({ open, onOpenChange, onSuccess }) {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className='w-full'>
                         <SelectValue placeholder='Select level' />
                       </SelectTrigger>
                       <SelectContent>
@@ -253,7 +253,7 @@ function AddCourseDialog ({ open, onOpenChange, onSuccess }) {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className='w-full'>
                         <SelectValue placeholder='Select semester' />
                       </SelectTrigger>
                       <SelectContent>

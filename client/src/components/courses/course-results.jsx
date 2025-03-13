@@ -4,7 +4,7 @@ import {CourseCard} from "@/components"
 
 export default function CourseResults({ courseParams,coursesData,error }) {
 
-console.log(coursesData,courseParams)
+//console.log(coursesData,courseParams)
 
   // Filter courses based on search params
   const filteredCourses = coursesData?.filter((course) => {

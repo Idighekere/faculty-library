@@ -81,10 +81,6 @@ export const getCurrentUserQueryOptions=()=>{
         console.error(err.response.data.message)
 
           },
-        // refetchOnWindowFocus: true,
-        refetchOnMount: true,
-        // refetchOnReconnect: true,
-        // refetchInterval: false,
     })
 }
 

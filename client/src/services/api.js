@@ -38,16 +38,16 @@ export const api = {
     return response.data;
   },
 
-  addCourse: async(formData)=>{
-    console.log(formData)
+  addCourse: async (formData) => {
+    //console.log(formData)
     const response = await apiClient.post(`/courses/`, formData);
 
     return response.data
   },
 
-  addBook:async(formData)=>{
-    console.log(formData)
-    const response = await apiClient.post(`/books/`,formData);
+  addBook: async (formData) => {
+    //console.log(formData)
+    const response = await apiClient.post(`/books/`, formData);
 
     return response.data
   }
@@ -69,13 +69,13 @@ export const authApi = {
 
     return response.data
   },
-  getCurrentUser:async()=>{
+  getCurrentUser: async () => {
 
 
     const response = await apiClient.get(`/users/me/`);
     return response.data
   }
-  }
+}
 
 
 // Track rate limiting state
@@ -106,7 +106,7 @@ apiClient.interceptors.response.use(
 
       // Show a toast notification
       toast.error(
-        `Rate limit exceeded. Please try again in ${rateLimitError.retryAfter ? `${rateLimitError.retryAfter} seconds`:`15 minutes`}`,
+        `Rate limit exceeded. Please try again in ${rateLimitError.retryAfter ? `${rateLimitError.retryAfter} seconds` : `15 minutes`}`,
         { duration: Math.min(rateLimitError.retryAfter * 1000, 8000) }
       );
 
