@@ -33,7 +33,7 @@ export const createAppRoutes = () => [
             <CoursesPage />
           </CourseSearchParamsProvider>
         ),
-        // errorElement: <ErrorPage />
+        errorElement: <ErrorPage />
       },
 
       {
@@ -43,7 +43,7 @@ export const createAppRoutes = () => [
             <BooksPage />
           </BookSearchProvider>
         ),
-        // errorElement: <ErrorPage />
+        errorElement: <ErrorPage />
       },
       {
         path: '/unauthorized',

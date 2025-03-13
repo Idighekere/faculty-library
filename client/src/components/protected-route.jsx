@@ -16,42 +16,6 @@ const ProtectedRoute = ({
 
   const location = useLocation()
 
-
-//   const { isLoading, isFetching,data:userData } = useQuery({
-//   ...getCurrentUserQueryOptions(),
-//       // select: (data) => data.data,
-//   onSuccess: data => {
-//     // setUser(data?.data.user)
-//     stateContext.dispatch({type:'SET_USER',payload:userData?.data})
-//     console.log(data)
-//   }
-// })
-
-// const {
-//     isLoading,
-//     isFetching,
-//     data: userData,
-//   } = useQuery({queryKey:['authUser'],queryFn: authApi.getCurrentUser,
-//     retry: 1,
-//     select: (data) => data.data,
-//     onSuccess: (data) => {
-//       console.log(data)
-//       stateContext.dispatch({ type: 'SET_USER', payload: data });
-//     },
-//   });
-
-  // useEffect(() => {
-  //   if (userData) {
-  //     console.log('User loaded successfully');
-  //     console.log(userData)
-  //   } else {
-  //     console.log('User not loaded');
-  //   }
-  // }, [userData]);
-
-// const user=userData
-// console.log(userData)
-
   // Show loading state while checking authentication
   if (loading) {
     return <Preloader fullScreen message='Loading...' />
@@ -59,6 +23,10 @@ const ProtectedRoute = ({
 
   // If not authenticated, redirect to login
 
+  if(user && window.location.pathname=="/auth/login"){
+    return <Navigate to='/dashboard
+    ' replace />
+  }
   if(user && (allowedRoles && allowedRoles.includes(user?.role))) {
     // return <Outlet/>
     return children

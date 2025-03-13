@@ -65,12 +65,12 @@ function DashboardHeader ({ user, onMenuClick }) {
       <div className='ml-auto flex items-center gap-2'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' className='relative h-9 w-9 rounded-full'>
-              <Avatar className='h-9 w-9'>
+            {/* <Button variant='ghost' className='relative h-9 w-9 rounded-full hover:bg-transparent'> */}
+              <Avatar className='h-9 w-9 border-2 font-bold'>
                 {/* <AvatarImage src={user.avatarUrl} alt={user.name} /> */}
                 <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
               </Avatar>
-            </Button>
+            {/* </Button> */}
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -28,15 +28,21 @@ export const AuthProvider=({children})=>{
     // const [user, setUser] = useState(null)
 
     const [state, dispatch] = useReducer(stateReducer, initialState)
-
+console.log(window.location.pathname)
     // const value = { state, dispatch }
 
+
+    const isLoginRoute=window.location.pathname=="/auth/login"
+    const isDashboardRoute=window.location.pathname.startsWith("/dashboard")
+
+    console.log(isLoginRoute)
 const {
     isLoading,
     isFetching,
     data: user,
   } = useQuery({queryKey:['authUser'],queryFn: authApi.getCurrentUser,
     retry: 1,
+    enabled:isDashboardRoute||isLoginRoute,
     select: (data) => data.data,
     onSuccess: (data) => {
       console.log(data)

@@ -84,7 +84,7 @@ export default function NavBar ({
         </a>
 
         {/* SECTION - Desktop navigation */}
-        <div className='hidden flex-1 justify-center md:flex'>
+        <div className='hidden flex-1 justify-end md:flex'>
           <NavigationMenu>
             <NavigationMenuList>
               {navItems.map(item => {
