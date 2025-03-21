@@ -1,7 +1,6 @@
 
-import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import {
   Dialog,
   DialogContent,
@@ -38,11 +37,6 @@ function AddBookDialog({ open, onOpenChange, onSuccess }) {
   // Watch the courseCode field to enable autocomplete
   const courseCodeValue = watch("courseCode")
 
-  // Fetch courses for autocomplete
-  // const { data: courses = [] } = useQuery({
-  //   queryKey: ["courses"],
-  //   queryFn: api.getCourses(),
-  // })
 
   // Add book mutation
   const {mutate:addBookMutation,isPending:isSubmitting} = useMutation({
@@ -61,23 +55,11 @@ function AddBookDialog({ open, onOpenChange, onSuccess }) {
   })
 
   const onSubmit = (data) => {
-// setFormData(data)
-    // Format the data as needed
-    const bookData = {
-      ...data,
-      // dateAdded: new Date().toISOString(),
-      // addedBy: "Current User", // This would come from your auth context
-      // size: "Unknown", // This would be calculated from the file or API
-    }
 
     addBookMutation(data)
   }
 
-  // // Filter courses based on input
-  // const filteredCourses = courseCodeValue
-  //   ? courses.filter((course) => course.code.toLowerCase().includes(courseCodeValue.toLowerCase()))
-  //   : []
-
+  
   return (
     <Dialog
       open={open}

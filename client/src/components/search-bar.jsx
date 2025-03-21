@@ -4,14 +4,19 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
+import { useCourseParams } from "@/contexts"
 
 
 export default function SearchBar({ defaultValue = "", onSearch }) {
   const [query, setQuery] = useState(defaultValue)
 
+  const {setCourseSearchText}=useCourseParams()
   const handleSubmit = (e) => {
     e.preventDefault()
     onSearch(query)
+        // console.log('clciked',query)
+
+setCourseSearchText(query)
   }
 
   return (

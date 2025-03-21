@@ -23,18 +23,18 @@ export default function Footer({
   return (
     <footer className="w-full bg-muted py-12 border-t flex flex-col items-center md:px-12 lg:px-16">
       <div className="container px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
           {/* Logo, site title and description */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 justify-center">
               {logo}
               <span className="font-bold text-lg">{siteTitle}</span>
             </Link>
-            <p className="text-muted-foreground text-sm">{description}</p>
+            <p className="text-muted-foreground text-sm text-center">{description}</p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="hidden">
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               {footerQuickLinks.map(link=> <li key={link.label}>
@@ -50,7 +50,7 @@ export default function Footer({
           </div>
 
           {/* Departments */}
-          <div>
+          <div className="hidden">
             <h3 className="font-semibold text-lg mb-4">Departments</h3>
             <ul className="space-y-2">
 

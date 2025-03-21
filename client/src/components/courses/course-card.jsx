@@ -1,18 +1,17 @@
-import {Link,useNavigate} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Book } from "lucide-react"
 
 
 export default function CourseCard({ course }) {
 
-  const navigate=useNavigate()
 
   const handleViewBooks=()=>{
 
     window.location.href=`/books?courseCode=${course.courseCode}&category=all&page=1`
   }
   return (
-    <div className="bg-background rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden /w-72 /md:w-64">
+    <div className="bg-background rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden /w-72 /md:w-64 w-full">
       <div className="p-6">
         <div className="flex flex-col gap-3">
           <div className="flex items-start justify-between gap-3">

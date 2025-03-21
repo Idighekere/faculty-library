@@ -76,15 +76,17 @@ export default function NavBar ({
 }) {
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:px-16 py-2 px-5'>
-      <div className='/container flex h-16 items-center justify-between'>
+      <div className='/container flex h-16 items-center justify-center'>
         {/* Logo and site title */}
         <a href='/' className='flex items-center gap-2 mr-6'>
           {logo}
           <span className='/hidden font-bold sm:inline-block'>{siteTitle}</span>
         </a>
 
+{/* I have hidden the desktop ad mobile navigation menu */}
+
         {/* SECTION - Desktop navigation */}
-        <div className='hidden flex-1 justify-end md:flex relative'>
+        <div className='hidden flex-1 justify-end /md:flex relative'>
           <NavigationMenu>
             <NavigationMenuList>
               {navItems.map(item => {
@@ -138,11 +140,11 @@ export default function NavBar ({
           </NavigationMenu>
         </div>
         {/* SECTION -Mobile menu */}
-        <Sheet>
-          <SheetTrigger asChild>
+        <Sheet >
+          <SheetTrigger asChild >
             <Button
               variant='outline'
-              className=' md:hidden border-0 p-0 shadow-none bg-transparent'
+              className=' hidden border-0 p-0 shadow-none bg-transparent'
             >
               {/* <Menu className='h-40 w-40' /> */}
               <img src='/menu.svg' alt='Hamburger menu' className='h-9 w-9' />

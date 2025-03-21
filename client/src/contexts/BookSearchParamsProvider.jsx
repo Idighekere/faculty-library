@@ -9,16 +9,18 @@ export function BookSearchProvider ({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const [bookParams, setBookParams] = useState({
     courseCode: '',
-    category: 'all'
+    category: 'all',
     // query: ''
   })
+
+const [bookSearchText, setBookSearchText] = useState('')
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const parsedParams = {
       courseCode: params.get('courseCode') || '',
-      category: params.get('category') || 'all'
-      //   query: params.get('query') || ''
+      category: params.get('category') || 'all',
+        // query: params.get('query') || ''
     }
 
     setBookParams(parsedParams)
@@ -43,7 +45,9 @@ export function BookSearchProvider ({ children }) {
   const value = {
     bookParams,
     updateBookParams,
-    isLoading
+    isLoading,
+    bookSearchText,
+    setBookSearchText
   }
 
   return (

@@ -1,4 +1,5 @@
 import {CourseCard} from "@/components"
+import { useCourseParams } from "@/contexts"
 
 
 
@@ -6,33 +7,20 @@ export default function CourseResults({ courseParams,coursesData,error }) {
 
 //console.log(coursesData,courseParams)
 
+const {courseSearchText}=useCourseParams()
+
   // Filter courses based on search params
   const filteredCourses = coursesData?.filter((course) => {
-    // Filter by department
-    if (courseParams.department && course.department !== courseParams.department) {
-      return false
-    }
-
-    // Filter by level
-    if (courseParams.level && course.level !== courseParams.level) {
-      return false
-    }
-
-    // Filter by semester
-    if (courseParams.semester && course.semester !== courseParams.semester) {
-      return false
-    }
-
     // Filter by search query
-    if (courseParams.query) {
-      const query = courseParams.query.toLowerCase()
-      return course.code.toLowerCase().includes(query) || course.title.toLowerCase().includes(query)
+    if (courseSearchText) {
+      const query = courseSearchText.toLowerCase()
+      return course?.courseCode.toLowerCase().includes(query) || course?.title.toLowerCase().includes(query)
     }
 
     return true
   })
 
-  if (coursesData?.length === 0 ) {
+  if (filteredCourses?.length === 0 ) {
   return (
     <div className='text-center py-12'>
       <h2 className='text-xl font-semibold mb-2'>No courses found</h2>
@@ -43,7 +31,7 @@ export default function CourseResults({ courseParams,coursesData,error }) {
   )
 }
 
-if (!courseParams || !coursesData) {
+if (!courseParams || !filteredCourses) {
   return (
     <div className='text-center py-12'>
       <h2 className='text-xl font-semibold mb-2'>No courses to display</h2>
@@ -67,8 +55,9 @@ if (!courseParams || !coursesData) {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {coursesData?.map((course) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredCourses
+?.map((course) => (
           <CourseCard key={course.courseCode} course={course} />
         ))}
       </div>

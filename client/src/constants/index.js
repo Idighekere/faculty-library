@@ -77,26 +77,26 @@ export const steps = [
       title: "Select Your Department, Level and Semester",
       description:
         "Choose your engineering department,current academic level and which semester you're interested in from the dropdown menu to filter courses specific to your chouce.",
-      image: "/placeholder.svg?height=300&width=400",
+    image: "/289_1x_shots_so.png",
     },
     {
       number: 2,
       title: "Find the course",
       description: "Look for the course you are interested to get its materials",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/928_1x_shots_so.png",
     },
     {
       number: 3,
       title: "Find the material",
       description: "Look for the material in which you needm you can filter by Textbooks, Past questions or Lecture notes",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/715_1x_shots_so.png",
     },
     {
       number: 4,
       title: "Preview and Download Material",
       description:
         "You can have a preview of the material's contents before proceeding to download",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/266_1x_shots_so.png",
     },
   ]
 

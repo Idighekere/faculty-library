@@ -12,7 +12,7 @@ function BooksPage () {
  } = useBookParams()
 
   const {data: booksData = [],
-    isLoading: booksLoading,
+    isPending: booksLoading,
     error,} = useQuery(getBooksByCoursesQueryOptions(bookParams, paramsLoading))
 
   return (

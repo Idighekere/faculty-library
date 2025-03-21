@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
 import { AuthContext } from './auth-context'
 // import { useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { authApi, getCurrentUserQueryOptions } from '@/services'
+import { authApi } from '@/services'
 import { useReducer } from 'react'
 
 const initialState = {
@@ -28,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   //console.log(window.location.pathname)
   // const value = { state, dispatch }
 
-  const isLoginRoute = window.location.pathname == '/auth/login'
+  // const isLoginRoute = window.location.pathname == '/auth/login'
   const isDashboardRoute = window.location.pathname.startsWith('/dashboard')
 
   //console.log(isLoginRoute)

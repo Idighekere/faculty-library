@@ -4,14 +4,17 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
 import { BookTabs } from '@/components'
+import { useBookParams } from '@/contexts'
 
 const BooksLayout = ({ children,bookParams,updateBookParams }) => {
   // const navigate = useNavigate()
-  const [searchQuery, setSearchQuery] = useState('')
+const [searchQuery,setSearchQuery]=useState()
+
+  const {setBookSearchText} =useBookParams()
 
   const handleSearch = e => {
     e.preventDefault()
-
+setBookSearchText(searchQuery)
     // updateBookParams({ query: searchQuery, page: 1 })
   }
 
@@ -39,11 +42,25 @@ const BooksLayout = ({ children,bookParams,updateBookParams }) => {
   //     navigate(`/books?${params.toString()}`)
   //   }
 
+
+  const handleGoBack = () => {
+  window?.navigation?.back()
+
+
+}
+
   return (
     <div className='container py-8'>
       <div className='flex flex-col gap-6'>
         {/* Header */}
         <div className='flex flex-col gap-4'>
+
+               {window?.navigation?.canGoBack &&<div>
+                         <Button variant='outline' className='/md:hidden' size="sm" onClick={handleGoBack}>
+                          <img src="/arrow-left.svg" alt="Arrow Left Icon" />
+                          <p>Back</p>
+                          </Button>
+                    </div>}
           <div className='flex items-center justify-between'>
             <h1 className='text-3xl font-bold'>
               {bookParams.courseCode
@@ -61,7 +78,7 @@ const BooksLayout = ({ children,bookParams,updateBookParams }) => {
               <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
               <Input
                 type='search'
-                placeholder='Search books by title or author...'
+                placeholder='Search books by title...'
                 className='pl-8'
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}

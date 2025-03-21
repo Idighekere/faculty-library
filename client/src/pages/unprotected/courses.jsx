@@ -13,13 +13,12 @@ export default function CoursesPage () {
 
   const {
     data: coursesData = [],
-    isLoading: courseLoading,
+    isPending: courseLoading,
     error
   } = useQuery(getCoursesByFilterQueryOptions(courseParams, paramsLoading))
-
   //console.log(coursesData)
   return (
-    <div className='min-h-screen bg-muted/30 w-full px-5 md:px-12 lg:px-16'>
+    <div className='min-h-screen bg-muted/30 w-full px-5 sm:px-12 lg:px-16'>
       <CoursesLayout
         courseParams={courseParams}
         updateCourseParams={updateCourseParams}
@@ -40,16 +39,17 @@ export default function CoursesPage () {
 
 function CourseResultsSkeleton () {
   return (
-    <div className='space-y-4'>
+    <div className='space-y-4 w-full'>
       {/* <div className='space-y-2'>
         <Skeleton className='h-8 w-3/4' />
         <Skeleton className='h-4 w-1/2' />
-      </div> */}
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      </div>
+      <p>Loading</p> */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
         {Array(6)
           .fill(0)
           .map((_, i) => (
-            <Skeleton key={i} className='h-40 w-full rounded-lg' />
+            <Skeleton key={i} className='h-64 w-full rounded-lg bg-muted animate-pulse ' />
           ))}
       </div>
     </div>

@@ -1,22 +1,23 @@
 import React from 'react'
 
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Filter } from 'lucide-react'
 import { CourseFilters, SearchBar } from '@/components/'
 import { getDepartmentsFullName } from '@/helpers'
 import { ScrollArea } from '../ui/scroll-area'
+import { useCourseParams } from '@/contexts'
 
 export default function CoursesLayout ({
   children,
   courseParams,
   updateCourseParams
 }) {
-  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
-  //console.log(courseParams)
+
+const {setCourseSearchText}=useCourseParams()
+
   const [filters, setFilters] = useState({
     department: courseParams?.department || '',
     level: courseParams?.level || '',
@@ -42,7 +43,16 @@ export default function CoursesLayout ({
     setOpen(false)
   }
 
-  const handleSearch = query => {}
+  const handleSearch = () => {
+
+    console.log('clciked')
+  }
+
+
+
+  const handleGoBack=()=>{
+  window.navigation.back()
+  }
 
   return (
     <div className='container/ py-8'>
@@ -63,8 +73,15 @@ export default function CoursesLayout ({
         </div>
 
         {/* Main Content */}
-        <div className='w-full flex flex-col items-center'>
-          <div className='w-full flex flex-col gap-4 mb-6 items-center'>
+        <div className='w-full flex flex-col /items-center'>
+          <div className='w-full flex flex-col gap-4 mb-6 /items-center'>
+
+          {window.navigation.canGoBack &&<div>
+               <Button variant='outline' className='/md:hidden' size="sm" onClick={handleGoBack}>
+                <img src="/arrow-left.svg" alt="Arrow Left Icon" />
+                <p>Back</p>
+                </Button>
+          </div>}
             <div className='flex items-center justify-between '>
               <h1 className='text-3xl font-bold'>Available Courses</h1>
 
@@ -97,7 +114,7 @@ export default function CoursesLayout ({
 
             {/* Search Bar */}
             <SearchBar
-              defaultValue={courseParams.query || ''}
+              defaultValue={''}
               onSearch={handleSearch}
             />
 

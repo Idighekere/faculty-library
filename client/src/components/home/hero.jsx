@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -17,7 +15,6 @@ export default function Hero () {
   const [level, setLevel] = useState('')
   const [semester, setSemester] = useState('')
 
-  const navigate = useNavigate()
 
   const handleSearch = () => {
 

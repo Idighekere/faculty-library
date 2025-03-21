@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
  * @param {string} props.className - Additional CSS classes
  * @param {boolean} props.fullScreen - Whether the preloader should take up the full screen
  */
-function Preloader({ size = "md", message='Loading', className, fullScreen = false, ...props }) {
+function Preloader({ size = "md", message='', className, fullScreen = false, ...props }) {
   // Size mappings
   const sizeClasses = {
     sm: "h-6 w-6 border-2",

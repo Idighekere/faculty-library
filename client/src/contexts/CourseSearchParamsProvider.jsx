@@ -14,6 +14,8 @@ export const CourseSearchParamsProvider = ({ children }) => {
     //   query: ''
   })
 
+  const [courseSearchText, setCourseSearchText] = useState('')
+
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const parsedParams = {
@@ -43,7 +45,9 @@ export const CourseSearchParamsProvider = ({ children }) => {
   const value = {
     courseParams: searchParams,
     updateCourseParams: updateSearchParams,
-    isLoading
+    isLoading,
+    courseSearchText,
+    setCourseSearchText
   }
 
   return (
