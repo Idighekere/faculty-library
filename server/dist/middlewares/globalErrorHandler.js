@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.globalErrorHandler = void 0;
-const configs_1 = require("@/common/configs");
-const errorResponse_1 = __importDefault(require("@/common/utils/errorResponse"));
+const configs_1 = require("../common/configs");
+const errorResponse_1 = __importDefault(require("../common/utils/errorResponse"));
 const productionError = (res, error) => {
     if (error.isOperational) {
         res.status(error.statusCode).json({

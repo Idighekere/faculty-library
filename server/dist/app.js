@@ -42,10 +42,10 @@ if (process.env.NODE_ENV === 'production') {
     require('module-alias/register');
 }
 const express_1 = __importDefault(require("express"));
-const middlewares_1 = require("@/middlewares");
-const utils_1 = require("@/common/utils");
+const middlewares_1 = require("./middlewares");
+const utils_1 = require("./common/utils");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const routes_1 = require("@/routes");
+const routes_1 = require("./routes");
 const cors_1 = __importDefault(require("cors"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const helmet_1 = __importDefault(require("helmet"));

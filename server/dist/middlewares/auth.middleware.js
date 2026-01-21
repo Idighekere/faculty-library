@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.restrict = exports.protectRoute = void 0;
-const utils_1 = require("@/common/utils");
+const utils_1 = require("../common/utils");
 const catchAsync_1 = require("./catchAsync");
-const services_1 = require("@/services");
+const services_1 = require("../services");
 const protectRoute = (0, catchAsync_1.catchAsync)(async (req, res, next) => {
     let accessToken;
     let refreshToken;

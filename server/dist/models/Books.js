@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const constants_1 = require("@/common/constants");
-const utils_1 = require("@/common/utils");
+const constants_1 = require("../common/constants");
+const utils_1 = require("../common/utils");
 const mongoose_1 = require("mongoose");
 const bookSchema = new mongoose_1.Schema({
     title: {

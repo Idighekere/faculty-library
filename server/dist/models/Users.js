@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const constants_1 = require("@/common/constants");
+const constants_1 = require("../common/constants");
 const mongoose_1 = require("mongoose");
 const isEmail_js_1 = __importDefault(require("validator/lib/isEmail.js"));
 const UserSchema = new mongoose_1.Schema({

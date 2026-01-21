@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllBooks = exports.updateBook = exports.getBooksByUser = exports.addBook = exports.getBooksByCourse = void 0;
-const utils_1 = require("@/common/utils");
-const middlewares_1 = require("@/middlewares");
-const models_1 = require("@/models");
-const book_service_1 = require("@/services/book.service");
+const utils_1 = require("../common/utils");
+const middlewares_1 = require("../middlewares");
+const models_1 = require("../models");
+const book_service_1 = require("../services/book.service");
 const getBooksByCourse = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     const { courseCode } = req.params;
     if (!courseCode) {

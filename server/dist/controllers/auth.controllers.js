@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetPassword = exports.forgotPassword = exports.register = exports.logout = exports.login = void 0;
-const configs_1 = require("@/common/configs");
-const utils_1 = require("@/common/utils");
-const middlewares_1 = require("@/middlewares");
-const models_1 = require("@/models");
+const configs_1 = require("../common/configs");
+const utils_1 = require("../common/utils");
+const middlewares_1 = require("../middlewares");
+const models_1 = require("../models");
 const login = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     const { password, email } = req.body;
     if (!email || !password) {

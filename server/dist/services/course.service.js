@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterCoursesService = void 0;
-const models_1 = require("@/models");
+const models_1 = require("../models");
 const filterCoursesService = async (department, semester, level) => {
     const matchConditions = {};
     // if department is provided, filter by department

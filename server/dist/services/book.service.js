@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllBooksService = void 0;
-const models_1 = require("@/models");
+const models_1 = require("../models");
 const getAllBooksService = async (page, limit, search, category) => {
     const skip = (page - 1) * limit;
     const matchConditions = {};

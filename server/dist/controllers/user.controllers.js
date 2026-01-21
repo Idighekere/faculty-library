@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCurrentUser = void 0;
-const utils_1 = require("@/common/utils");
-const middlewares_1 = require("@/middlewares");
-const models_1 = require("@/models");
+const utils_1 = require("../common/utils");
+const middlewares_1 = require("../middlewares");
+const models_1 = require("../models");
 const getCurrentUser = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     const user = await models_1.User.findById(req['user']._id);
     if (!user) {

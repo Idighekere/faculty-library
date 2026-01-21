@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDepartment = exports.getDepartment = exports.updateDepartment = exports.createDepartment = exports.getAllDepartments = void 0;
-const utils_1 = require("@/common/utils");
-const middlewares_1 = require("@/middlewares");
-const models_1 = require("@/models");
+const utils_1 = require("../common/utils");
+const middlewares_1 = require("../middlewares");
+const models_1 = require("../models");
 const getAllDepartments = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     const departments = await models_1.Department.find();
     (0, utils_1.SuccessResponse)(res, 200, departments, "success");

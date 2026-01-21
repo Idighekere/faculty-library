@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticate = void 0;
-const configs_1 = require("@/common/configs");
-const utils_1 = require("@/common/utils");
-const models_1 = require("@/models");
+const configs_1 = require("../common/configs");
+const utils_1 = require("../common/utils");
+const models_1 = require("../models");
 const authenticate = async ({ accessToken, refreshToken }) => {
     const isProd = configs_1.ENVIRONMENT?.APP.ENV === "production";
     console.log(accessToken);
