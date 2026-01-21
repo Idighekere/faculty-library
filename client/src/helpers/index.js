@@ -53,6 +53,7 @@ const removeFromLocalStorage = (key) => {
 };
 
 const extractDriveFileId = (url) => {
+    if (!url) return null;
     const regex = /(?:(?:drive|docs)\.google\.com\/(?:a\/[^/]+\/)?(?:file\/d\/|open\?id=|uc\?id=|thumbnail\?id=|document\/d\/|spreadsheets\/d\/|presentation\/d\/))([a-zA-Z0-9_-]{10,})/;
     const match = url.match(regex);
     return match ? match[1] : null;

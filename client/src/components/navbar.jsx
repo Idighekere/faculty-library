@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Book, Menu } from 'lucide-react'
+import { Book, Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -11,7 +12,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible'
 
 const navItems = [
   { title: 'Home', href: '/' },
@@ -63,30 +69,28 @@ const navItems = [
       }
     ]
   },
-  { title: 'Courses', href: '/courses' }
+  { title: 'Materials Archive', href: '/materials' }
 ]
 
 export default function NavBar ({
-  siteTitle = 'NUESA UNIUYO Library',
-  // logo = <Book className='h-6 w-6' />,
+  siteTitle = 'UNIUYO Engineering Library',
   logo=<img src="/nuesa-logo.png" alt="NUESA UNIUYO Logo" className="w-10 h-10" />,
-
   ctaText = 'Login',
   ctaHref = '/auth/login'
 }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [openCollapsible, setOpenCollapsible] = useState('')
+
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:px-16 py-2 px-5'>
-      <div className='/container flex h-16 items-center justify-center'>
+      <div className='flex h-16 items-center justify-between'>
         {/* Logo and site title */}
-        <a href='/' className='flex items-center gap-2 mr-6'>
-          {logo}
-          <span className='/hidden font-bold sm:inline-block'>{siteTitle}</span>
+        <a href='/' className='flex items-center gap-2'>
+          <span className='font-bold text-sm sm:text-base truncate max-w-[200px] sm:max-w-none'>{siteTitle}</span>
         </a>
 
-{/* I have hidden the desktop ad mobile navigation menu */}
-
-        {/* SECTION - Desktop navigation */}
-        <div className='hidden flex-1 justify-end /md:flex relative'>
+        {/* Desktop navigation */}
+        <div className='hidden md:flex flex-1 justify-end'>
           <NavigationMenu>
             <NavigationMenuList>
               {navItems.map(item => {
@@ -98,7 +102,7 @@ export default function NavBar ({
                         {item.title}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] h-full right-0 /absolute'>
+                        <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
                           {item.children.map(child => (
                             <li key={child.title}>
                               <NavigationMenuLink asChild>
@@ -139,48 +143,81 @@ export default function NavBar ({
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        {/* SECTION -Mobile menu */}
-        <Sheet >
-          <SheetTrigger asChild >
+
+        {/* Mobile menu */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
             <Button
-              variant='outline'
-              className=' hidden border-0 p-0 shadow-none bg-transparent'
+              variant='ghost'
+              size='icon'
+              className='md:hidden'
             >
-              {/* <Menu className='h-40 w-40' /> */}
-              <img src='/menu.svg' alt='Hamburger menu' className='h-9 w-9' />
+              <Menu className='h-6 w-6' />
               <span className='sr-only'>Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side='right'>
-            <div className='flex flex-col gap-4 p-10 /py-15 px-6'>
-              <Link
+          <SheetContent side='right' className='w-[300px] sm:w-[350px]'>
+            <div className='flex flex-col gap-6 pt-6'>
+              <a
                 href='/'
-                className='flex items-center gap-2 text-lg font-semibold justfy-center w-full self-center'
+                className='flex items-center gap-2 text-lg font-semibold'
+                onClick={() => setIsOpen(false)}
               >
                 {logo}
-                {/* {siteTitle} */}
-              </Link>
-              <nav className='flex flex-col gap-3'>
+                <span className='text-sm'>NUESA Library</span>
+              </a>
+              
+              <nav className='flex flex-col gap-2'>
                 {navItems.map(item => (
-                  <div key={item.title} className='space-y-3'>
-                    <a
-                      href={item.href}
-                      className='text-base font-medium transition-colors hover:text-primary'
-                    >
-                      {item.title}
-                    </a>
-                    {item.children && (
-                      <div className='ml-4 flex flex-col gap-2 pl-2 border-l'>
-                        {item.children.map(child => (
-                          <Link
-                            key={child.title}
-                            href={child.href}
-                            className='text-sm text-muted-foreground transition-colors hover:text-primary'
+                  <div key={item.title}>
+                    {item.children ? (
+                      <Collapsible
+                        open={openCollapsible === item.title}
+                        onOpenChange={(open) => setOpenCollapsible(open ? item.title : '')}
+                      >
+                        <CollapsibleTrigger asChild>
+                          <Button
+                            variant='ghost'
+                            className='w-full justify-between font-medium'
                           >
-                            {child.title}
-                          </Link>
-                        ))}
-                      </div>
+                            {item.title}
+                            <ChevronDown 
+                              className={`h-4 w-4 transition-transform ${
+                                openCollapsible === item.title ? 'rotate-180' : ''
+                              }`} 
+                            />
+                          </Button>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className='pl-4 pt-2 pb-2'>
+                          <div className='flex flex-col gap-1 border-l pl-4'>
+                            <a
+                              href={item.href}
+                              className='py-2 text-sm font-medium text-primary hover:underline'
+                              onClick={() => setIsOpen(false)}
+                            >
+                              View All Departments
+                            </a>
+                            {item.children.map(child => (
+                              <a
+                                key={child.title}
+                                href={child.href}
+                                className='py-2 text-sm text-muted-foreground hover:text-foreground transition-colors'
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {child.title}
+                              </a>
+                            ))}
+                          </div>
+                        </CollapsibleContent>
+                      </Collapsible>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className='flex items-center py-2 px-4 text-base font-medium hover:bg-accent rounded-md transition-colors'
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.title}
+                      </a>
                     )}
                   </div>
                 ))}
@@ -188,13 +225,6 @@ export default function NavBar ({
             </div>
           </SheetContent>
         </Sheet>
-
-        {/* Call to action */}
-        {/* <div className="/ml-auto">
-          <Button >
-            <a href={ctaHref}>{ctaText}</a>
-          </Button>
-        </div> */}
       </div>
     </header>
   )

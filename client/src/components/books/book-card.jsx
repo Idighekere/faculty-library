@@ -7,13 +7,18 @@ import BookPreviewDialog from './book-preview-dialog'
 const BookCard = ({ book }) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
+  // Guard against undefined book
+  if (!book) return null
+
   const driveFileId = extractDriveFileId(book.driveUrl)
 
-  const previewUrl = `https://drive.google.com/file/d/${driveFileId}/preview`
+  const previewUrl = driveFileId 
+    ? `https://drive.google.com/file/d/${driveFileId}/preview`
+    : ''
 
-  // const downloadLink=`https://drive.google.com/uc?export=download&id=${driveFileId}&confirm=t&uuid=${Date.now()}&authuser=0`
-
- const downloadLink = `https://drive.usercontent.google.com/download?id=${driveFileId}&export=download&authuser=0&confirm=f`
+  const downloadLink = driveFileId
+    ? `https://drive.usercontent.google.com/download?id=${driveFileId}&export=download&authuser=0&confirm=f`
+    : ''
 
   const handlePreview = () => {
     setIsPreviewOpen(true)
@@ -55,7 +60,7 @@ const BookCard = ({ book }) => {
           <div className='flex flex-col flex-1'>
             <div className='flex items-start justify-between'>
               <span className='text-xs bg-primary/10 text-primary px-2 py-1 rounded-full'>
-                {book.course[0].courseCode}
+                {book.course?.[0]?.courseCode || 'N/A'}
               </span>
               <span className='text-xs text-muted-foreground'>{book.size}</span>
             </div>

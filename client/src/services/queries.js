@@ -35,7 +35,7 @@ export const getCoursesByFilterQueryOptions=(courseParams,paramsLoading)=>{
     return queryOptions({
         queryKey: ['courses',department,level,semester],
         queryFn: () => api.getCourses(department, level, semester),
-        enabled: !paramsLoading && Boolean(department && level && semester),
+        enabled: !paramsLoading && Boolean(department || level || semester),
         keepPreviousData: true
     })
 }
@@ -50,6 +50,14 @@ export const getBooksByCoursesQueryOptions=(bookParams,paramsLoading)=>{
         keepPreviousData: true
     })
 
+}
+
+export const getAllBooksQueryOptions = (params = {}) => {
+    return queryOptions({
+        queryKey: ['allBooks', params.page, params.search, params.category],
+        queryFn: () => api.getAllBooks(params),
+        keepPreviousData: true
+    })
 }
 
 

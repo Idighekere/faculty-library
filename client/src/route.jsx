@@ -6,7 +6,12 @@ import {
   RegisterPage,
   LoginPage,
   CustomErrorPage,
-  ErrorPage
+  ErrorPage,
+  DepartmentsPage,
+  DepartmentDetailPage,
+  ContactPage,
+  AboutPage,
+  MaterialsArchivePage
 } from './pages/unprotected'
 import {
   AuthProvider,
@@ -43,6 +48,31 @@ export const createAppRoutes = () => [
             <BooksPage />
           </BookSearchProvider>
         ),
+        errorElement: <ErrorPage />
+      },
+      {
+        path: '/departments',
+        element: <DepartmentsPage />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: '/departments/:slug',
+        element: <DepartmentDetailPage />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: '/contact',
+        element: <ContactPage />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: '/materials',
+        element: <MaterialsArchivePage />,
         errorElement: <ErrorPage />
       },
       {
