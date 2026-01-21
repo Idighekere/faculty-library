@@ -38,8 +38,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-if (process.env.NODE_ENV === 'production') {
-    require('module-alias/register');
+if (process.env.NODE_ENV === "production") {
+    require("module-alias/register");
 }
 const express_1 = __importDefault(require("express"));
 const middlewares_1 = require("./middlewares");
@@ -57,17 +57,31 @@ const app = (0, express_1.default)();
 // Middleware to parse JSON and cookies
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
+app.use(async (req, res, next) => {
+    try {
+        await (0, configs_1.connectToDatabase)();
+        next();
+    }
+    catch (error) {
+        res.status(500).json({ error: "Database connection failed" });
+    }
+});
 // CORS configuration
 const corsOptions = {
-    origin: ['http://localhost:5173', 'http://192.168.44.119:5173', 'https://nuesa-library.loca.lt', 'https://faculty-library.netlify.app'],
+    origin: [
+        "http://localhost:5173",
+        "http://192.168.44.119:5173",
+        "https://nuesa-library.loca.lt",
+        "https://faculty-library.netlify.app",
+    ],
     credentials: true, // Allow credentials (cookies) to be sent and received
     optionsSuccessStatus: 200,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization, X-Requested-With",
 };
 // Add headers to the response
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 // Apply CORS middleware
@@ -75,26 +89,26 @@ app.use((0, cors_1.default)(corsOptions));
 // Rate limiting middleware
 const apiLimiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: configs_1.ENVIRONMENT.APP.ENV == 'development' ? 1000 : 100,
-    message: 'Too many requests from this IP, please try again later',
+    max: configs_1.ENVIRONMENT.APP.ENV == "development" ? 1000 : 100,
+    message: "Too many requests from this IP, please try again later",
 });
-app.use('/api/v1/courses', apiLimiter);
-app.use('/api/v1/books', apiLimiter);
-app.use('/api/v1/auth', apiLimiter);
+app.use("/api/v1/courses", apiLimiter);
+app.use("/api/v1/books", apiLimiter);
+app.use("/api/v1/auth", apiLimiter);
 // Security headers configuration
 const helmetConfig = {
     xssFilter: true,
-    frameguard: { action: 'deny' },
-    referrerPolicy: { policy: 'strict-origin' },
+    frameguard: { action: "deny" },
+    referrerPolicy: { policy: "strict-origin" },
     hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
 };
 app.use((0, helmet_1.default)(helmetConfig));
 // Data sanitization against NoSQL query injection
 app.use((0, express_mongo_sanitize_1.default)());
 // Logger middleware
-app.use((0, morgan_1.default)(configs_1.ENVIRONMENT.APP.ENV !== 'development' ? 'combined' : 'dev'));
-app.get('/', (req, res) => {
-    res.send('Hello, world!');
+app.use((0, morgan_1.default)(configs_1.ENVIRONMENT.APP.ENV !== "development" ? "combined" : "dev"));
+app.get("/", (req, res) => {
+    res.send("Hello, world!");
 });
 // Routes
 app.use("/api/v1/users", routes_1.userRoutes);
@@ -106,4 +120,9 @@ app.all("*", (req, res, next) => {
     return next(new utils_1.ErrorResponse(`Can't find ${req.originalUrl} in the server`, 404));
 });
 app.use(middlewares_1.globalErrorHandler);
+if (configs_1.ENVIRONMENT.APP.ENV !== "production") {
+    app.listen(configs_1.ENVIRONMENT.APP.PORT, () => {
+        console.log(`Server is running on port ${configs_1.ENVIRONMENT.APP.PORT}`);
+    });
+}
 exports.default = app;

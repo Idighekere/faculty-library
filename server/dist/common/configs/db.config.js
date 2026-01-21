@@ -6,16 +6,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectToDatabase = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const environment_config_1 = require("./environment.config");
-const uri = environment_config_1.ENVIRONMENT.DB.URI || 'mongodb://localhost:27017/faculty-library';
+const uri = environment_config_1.ENVIRONMENT.DB.URI || "mongodb://localhost:27017/faculty-library";
+//This is to prevent multiple connections in prduction
+let cached = global.mongoose;
+if (!cached) {
+    cached = global.mongoose = { conn: null, promise: null };
+}
 const connectToDatabase = async () => {
+    if (cached.conn)
+        return cached.conn;
+    if (!cached.promise) {
+        // Note: Do NOT 'await' here, assign the promise itself
+        cached.promise = mongoose_1.default.connect(uri, {
+            bufferCommands: false,
+        });
+    }
     try {
-        const connection = await mongoose_1.default.connect(uri);
-        console.log(`Connected to MongoDB at ${connection.connection.host}`);
+        cached.conn = await cached.promise;
+        console.log(`Connected to MongoDB`);
     }
-    catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-        process.exit(1);
-        // throw error;
+    catch (e) {
+        cached.promise = null; // Reset if it fails
+        throw e;
     }
+    return cached.conn;
 };
 exports.connectToDatabase = connectToDatabase;
