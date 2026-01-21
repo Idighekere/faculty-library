@@ -1,5 +1,35 @@
 @import "tailwindcss";
 
+/* Local Inter Font */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
@@ -11,10 +41,10 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --secondary:oklch(0.6731 0.1624 144.21);  /*Green*/
-  --primary:oklch(69.21% 0.2064 42.47); /*Orange*/
+  --secondary: oklch(0.6731 0.1624 144.21); /*Green*/
+  --primary: oklch(69.21% 0.2064 42.47); /*Orange*/
   /* --primary:oklch(82.59% 0.1482 75.55); Yellow */
-  --primary-foreground:oklch(1 0 285.823);
+  --primary-foreground: oklch(1 0 285.823);
   /* --secondary: oklch(0.967 0.001 286.375); */
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);
@@ -115,10 +145,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-
   /* FONTS */
-    --font-display: "Inter", "sans-serif";
-
+  --font-display: "Inter", "sans-serif";
 }
 
 @layer base {
@@ -130,6 +158,6 @@
   }
 }
 
-body{
-  font-family:"Inter","sans-serif"
+body {
+  font-family: "Inter", "sans-serif";
 }

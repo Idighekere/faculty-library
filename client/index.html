@@ -4,27 +4,59 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/nuesa-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNIUYO Engineering Library</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>UNIUYO Engineering Library | Course Materials, Past Questions & Textbooks</title>
+    <meta name="description" content="Access free engineering course materials, lecture notes, past questions, and textbooks for University of Uyo students. Browse by department, level, and semester." />
+    <meta name="keywords" content="UNIUYO, engineering, course materials, past questions, lecture notes, textbooks, University of Uyo, NUESA" />
+    <meta name="author" content="NUESA UNIUYO" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="UNIUYO Engineering Library | Course Materials & Past Questions" />
+    <meta property="og:description" content="Access free engineering course materials, lecture notes, past questions, and textbooks for University of Uyo students." />
+    <meta property="og:image" content="/nuesa-logo.png" />
+    <meta property="og:url" content="https://faculty-library.netlify.app" />
+    <meta property="og:site_name" content="UNIUYO Engineering Library" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UNIUYO Engineering Library | Course Materials & Past Questions" />
+    <meta name="twitter:description" content="Access free engineering course materials, lecture notes, past questions, and textbooks for University of Uyo students." />
+    <meta name="twitter:image" content="/nuesa-logo.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://faculty-library.netlify.app" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#ff6302" />
 
-    <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet">
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2KTP1SSPF9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2KTP1SSPF9');
-</script>
+    <!-- Preload Critical Font -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Google Analytics - Lazy Loaded -->
+    <script>
+      // Load Google Analytics after page load to avoid blocking render
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-2KTP1SSPF9';
+          script.async = true;
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2KTP1SSPF9');
+          };
+        }, 100); // Small delay to prioritize main content
+      });
+    </script>
   </body>
 </html>
