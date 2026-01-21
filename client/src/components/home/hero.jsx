@@ -44,7 +44,7 @@ export default function Hero () {
           <div className='grid grid-cols-1 lg:grid-cols-12 gap-4'>
             {/* Department Select - Full width on small/medium, 4 cols on large */}
             <div className='lg:col-span-4'>
-              <Select value={department} onValueChange={setDepartment}>
+              <Select value={department} onValueChange={setDepartment} name="department">
                 <SelectTrigger className='w-full border-primary'>
                   <SelectValue placeholder='Select Department' />
                 </SelectTrigger>
@@ -60,7 +60,7 @@ export default function Hero () {
 
             {/* Level and Semester - Each takes half width on small/medium, 2 cols on large */}
             <div className='grid grid-cols-2 gap-4 lg:col-span-4'>
-              <Select value={level} onValueChange={setLevel}>
+              <Select value={level} onValueChange={setLevel} name="level">
                 <SelectTrigger className='w-full border-primary'>
                   <SelectValue placeholder='Level' />
                 </SelectTrigger>
@@ -73,7 +73,7 @@ export default function Hero () {
                 </SelectContent>
               </Select>
 
-              <Select value={semester} onValueChange={setSemester}>
+              <Select value={semester} onValueChange={setSemester} name="semester">
                 <SelectTrigger className='w-full border-primary'>
                   <SelectValue placeholder='Semester' />
                 </SelectTrigger>
