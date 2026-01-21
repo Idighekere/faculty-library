@@ -1,5 +1,5 @@
 import { protectRoute } from '@/middlewares';
-import { addBook, getBooksByCourse, getBooksByUser, updateBook } from '@/controllers'
+import { addBook, getAllBooks, getBooksByCourse, getBooksByUser, updateBook } from '@/controllers'
 import express from 'express'
 
 
@@ -9,5 +9,6 @@ booksRoute.route("/").post(protectRoute, addBook).get(protectRoute, getBooksByUs
 booksRoute.route("/:id").get().patch(protectRoute,updateBook).delete()
 
 booksRoute.route("/course/:courseCode").get(getBooksByCourse)
+booksRoute.route("/all").get(getAllBooks)
 
 export default booksRoute

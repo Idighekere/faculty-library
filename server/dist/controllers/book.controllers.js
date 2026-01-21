@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBook = exports.getBooksByUser = exports.addBook = exports.getBooksByCourse = void 0;
+exports.getAllBooks = exports.updateBook = exports.getBooksByUser = exports.addBook = exports.getBooksByCourse = void 0;
 const utils_1 = require("@/common/utils");
 const middlewares_1 = require("@/middlewares");
 const models_1 = require("@/models");
+const book_service_1 = require("@/services/book.service");
 const getBooksByCourse = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     const { courseCode } = req.params;
     if (!courseCode) {
@@ -17,14 +18,14 @@ const getBooksByCourse = (0, middlewares_1.catchAsync)(async (req, res, next) =>
     const books = await models_1.Book.aggregate([
         {
             $lookup: {
-                from: 'courses',
-                localField: 'course',
-                foreignField: '_id',
-                as: 'course',
+                from: "courses",
+                localField: "course",
+                foreignField: "_id",
+                as: "course",
             },
         },
         {
-            $match: { 'course.courseCode': courseCode }
+            $match: { "course.courseCode": courseCode },
         },
         // {
         //     $unwind: '$course',
@@ -36,10 +37,10 @@ const getBooksByCourse = (0, middlewares_1.catchAsync)(async (req, res, next) =>
                 previewUrl: 1,
                 downloadUrl: 1,
                 category: 1,
-                'course.title': 1,
-                'course.courseCode': 1
-            }
-        }
+                "course.title": 1,
+                "course.courseCode": 1,
+            },
+        },
     ], { includeVirtuals: true }).exec();
     // if (!book) {
     //     return next(new ErrorResponse("Book not found", 404))
@@ -56,7 +57,13 @@ const addBook = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     if (!course) {
         return next(new utils_1.ErrorResponse("Course not found. The course must be added by an admin before", 404));
     }
-    const book = await models_1.Book.create({ title, driveUrl, course: course._id, category, uploadedBy: req?.user._id });
+    const book = await models_1.Book.create({
+        title,
+        driveUrl,
+        course: course._id,
+        category,
+        uploadedBy: req?.user._id,
+    });
     // const bookResponse = {
     //     title:book.title,
     //     driveUrl:book.driveUrl,
@@ -93,29 +100,37 @@ const getBooksByUser = (0, middlewares_1.catchAsync)(async (req, res, next) => {
     const books = await models_1.Book.aggregate([
         {
             $match: {
-                uploadedBy: req?.user._id
-            }
+                uploadedBy: req?.user._id,
+            },
         },
         {
             $lookup: {
                 from: "courses",
                 localField: "course",
                 foreignField: "_id",
-                as: "course"
-            }
+                as: "course",
+            },
         },
         {
             $project: {
                 title: 1,
                 driveUrl: 1,
                 course: {
-                    courseCode: 1
+                    courseCode: 1,
                 },
                 createdAt: 1,
-                category: 1
-            }
-        }
+                category: 1,
+            },
+        },
     ]);
     (0, utils_1.SuccessResponse)(res, 200, books, "success");
 });
 exports.getBooksByUser = getBooksByUser;
+const getAllBooks = (0, middlewares_1.catchAsync)(async (req, res, next) => {
+    const { page = 1, limit = 10, search, category } = req.query;
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit) || 10;
+    const { books, pagination } = await (0, book_service_1.getAllBooksService)(pageNum, limitNum, search, category);
+    (0, utils_1.SuccessResponse)(res, 200, { books, pagination });
+});
+exports.getAllBooks = getAllBooks;

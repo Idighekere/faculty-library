@@ -75,10 +75,12 @@ app.use((0, cors_1.default)(corsOptions));
 // Rate limiting middleware
 const apiLimiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: configs_1.ENVIRONMENT.APP.ENV == 'development' ? 100 : 25,
+    max: configs_1.ENVIRONMENT.APP.ENV == 'development' ? 1000 : 100,
     message: 'Too many requests from this IP, please try again later',
 });
-app.use('/api/v1/', apiLimiter);
+app.use('/api/v1/courses', apiLimiter);
+app.use('/api/v1/books', apiLimiter);
+app.use('/api/v1/auth', apiLimiter);
 // Security headers configuration
 const helmetConfig = {
     xssFilter: true,
