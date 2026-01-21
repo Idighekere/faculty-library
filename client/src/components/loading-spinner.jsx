@@ -17,7 +17,7 @@ function LoadingSpinner({ children, delay = 2000 }) {
     return () => clearTimeout(timer)
   }, [window.location.pathname, delay])
 
-  if (isLoading) {
+  if (isLoading && window.location.pathname!=='/') {
     return <Preloader fullScreen message="" />
   }
 

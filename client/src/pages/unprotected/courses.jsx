@@ -16,7 +16,7 @@ export default function CoursesPage () {
     isPending: courseLoading,
     error
   } = useQuery(getCoursesByFilterQueryOptions(courseParams, paramsLoading))
-  //console.log(coursesData)
+  console.log(coursesData)
   return (
     <div className='min-h-screen bg-muted/30 w-full px-5 sm:px-12 lg:px-16'>
       <CoursesLayout

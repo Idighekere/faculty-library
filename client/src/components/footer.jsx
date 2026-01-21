@@ -1,24 +1,26 @@
-import React from "react"
-import { Book } from "lucide-react"
-import { departments } from "@/constants"
-import {Link} from "react-router-dom"
+import React from "react";
+import { Book } from "lucide-react";
+import { departments } from "@/constants";
+import { Link } from "react-router-dom";
 
 const footerQuickLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-    { href: "/courses", label: "Courses" },
-    { href: "/departments", label: "Departments" },
-]
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/courses", label: "Courses" },
+  { href: "/departments", label: "Departments" },
+];
 
 export default function Footer({
-  siteTitle = "NUESA UNIUYO Library",
-  logo=<img src="/nuesa-logo.png" alt="NUESA UNIUYO Logo" className="w-10 h-10" />,
-   description = "Providing comprehensive resources and services to support engineering education, research, and innovation across all departments.",
+  siteTitle = "UNIUYO Engineering Library",
+  logo = (
+    <img src="/nuesa-logo.png" alt="NUESA UNIUYO Logo" className="w-10 h-10" />
+  ),
+  description = "Providing comprehensive resources and services to support engineering education, research, and innovation across all departments.",
   developerName = "Idighekere Udo",
   developerUrl = "https://idighekereudo.netlify.app",
 }) {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full bg-muted py-12 border-t flex flex-col items-center md:px-12 lg:px-16">
@@ -27,25 +29,28 @@ export default function Footer({
           {/* Logo, site title and description */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 justify-center">
-              {logo}
+              {/* {logo} */}
               <span className="font-bold text-lg">{siteTitle}</span>
             </Link>
-            <p className="text-muted-foreground text-sm text-center">{description}</p>
+            <p className="text-muted-foreground text-sm text-center">
+              {description}
+            </p>
           </div>
 
           {/* Quick Links */}
           <div className="hidden">
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {footerQuickLinks.map(link=> <li key={link.label}>
-                <Link
-                  href={`${link.href}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </li>)}
-
+              {footerQuickLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={`${link.href}`}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -53,16 +58,17 @@ export default function Footer({
           <div className="hidden">
             <h3 className="font-semibold text-lg mb-4">Departments</h3>
             <ul className="space-y-2">
-
-                {departments.map((dept) => (<li key={dept.id}>
-                <Link
-                  href={`/departments/${dept.id}`} key={dept.id}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dept.name}
-                </Link>
-              </li>))}
-
+              {departments.map((dept) => (
+                <li key={dept.id}>
+                  <Link
+                    href={`/departments/${dept.id}`}
+                    key={dept.id}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {dept.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -121,12 +127,17 @@ export default function Footer({
           </p>
           <p className="text-sm text-muted-foreground text-center">
             Developed by{" "}
-            <a href={developerUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:underline">
+            <a
+              href={developerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium hover:underline"
+            >
               {developerName}
-            </a> in collaboration with Favour Tony
+            </a>{" "}
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

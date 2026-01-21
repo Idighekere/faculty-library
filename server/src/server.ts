@@ -1,12 +1,11 @@
-import app from "./app";
 import { connectToDatabase, ENVIRONMENT } from "@/common/configs";
+// Connection to MongoDb database
+connectToDatabase();
+
+import app from "./app";
 
 const port = ENVIRONMENT.APP.PORT;
 
-// Connection to MongoDb database
-connectToDatabase()
-
-
-app.listen(port,'0.0.0.0', () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
